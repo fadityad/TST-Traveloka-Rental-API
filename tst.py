@@ -35,7 +35,8 @@ def kota(city):
     _soup = BeautifulSoup(_kota.text, 'html.parser')    
     #List dari keterangan tabel
     data = []
-    
+
+
     #Parsing HTML ke JSON
     table = _soup.find('tbody')
 
@@ -43,10 +44,12 @@ def kota(city):
     #Kemudian di append object
     for tr in table.find_all('tr'):
         data.append({
-            'MOBIL': tr.find('b').string    
+            'harga': tr.find_all('b')[1].text,
+            'mobil': tr.find_all('b')[0].text
+            
         })
   
     return jsonify(data)
         
-app.run()
+app.run(port = 5010)
 #app.run (debug = true)
