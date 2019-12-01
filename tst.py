@@ -48,17 +48,6 @@ def kota(city):
             tr.find_all('b')[0].text : 'mobil'
             
         })
-
-    # for tr in table.find_all('tr', attrs ={'class' : 'mobil-list'} ):
-    #     if tr.find_all('td', attrs = {'class' : 'td1'}):
-    #         _td1 = tr.find('td', attrs = {'class' : 'td1'})
-    #         if _td1.find('b', attrs = {'class' : 'item-title item-title-16'}):
-    #             _key = "MOBIL"
-    #             _value =  _td1.find('b', attrs = {'class' : 'item-title item-title-16'})      
-    #     temp[_key] = _value
-    
-    # data.append(temp.copy())
-  
     return jsonify(data)
         
 app.run(port = 5010)
