@@ -16,12 +16,12 @@ def home():
 @app.route('/kota/<city>', methods=['GET'])
 def kota(city):
     #Kota/Region yang menyediakan rental mobil
-    list_city = ['bali', 'yogyakarta', 'jakarta', 'bandung', 'surabaya', 'malang', 'makassar', 'semarang', 'medan']
+    list_city = ['yogyakarta', 'jakarta', 'bandung', 'surabaya', 'malang', 'semarang']
 
     #Ada dalam list_city
     if city in list_city:
         #Region yang menyediakan rental mobil
-        if city == 'bali' or city == 'yogyakarta' or city == 'jakarta':
+        if city == 'yogyakarta' or city == 'jakarta':
             _kota = requests.get(url + 'region/' + city)
 
         #Kota yang menyediakan rental mobil
@@ -35,7 +35,7 @@ def kota(city):
     _soup = BeautifulSoup(_kota.text, 'html.parser')    
     #List dari keterangan tabel
     data = []
-
+    
 
     #Parsing HTML ke JSON
     table = _soup.find('tbody')
@@ -44,10 +44,20 @@ def kota(city):
     #Kemudian di append object
     for tr in table.find_all('tr'):
         data.append({
-            'harga': tr.find_all('b')[1].text,
-            'mobil': tr.find_all('b')[0].text
+            tr.find_all('b')[1].text : 'harga',
+            tr.find_all('b')[0].text : 'mobil'
             
         })
+
+    # for tr in table.find_all('tr', attrs ={'class' : 'mobil-list'} ):
+    #     if tr.find_all('td', attrs = {'class' : 'td1'}):
+    #         _td1 = tr.find('td', attrs = {'class' : 'td1'})
+    #         if _td1.find('b', attrs = {'class' : 'item-title item-title-16'}):
+    #             _key = "MOBIL"
+    #             _value =  _td1.find('b', attrs = {'class' : 'item-title item-title-16'})      
+    #     temp[_key] = _value
+    
+    # data.append(temp.copy())
   
     return jsonify(data)
         
