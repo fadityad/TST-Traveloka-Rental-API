@@ -16,14 +16,16 @@ def home():
 @app.route('/kota/<city>', methods=['GET'])
 def kota(city):
     #Kota/Region yang menyediakan rental mobil
-    list_city = ['yogyakarta', 'jakarta', 'bandung', 'surabaya', 'malang', 'semarang']
+    list_city = ['yogyakarta', 'jakarta', 'bandung', 'surabaya', 'malang']
 
     #Ada dalam list_city
     if city in list_city:
         #Region yang menyediakan rental mobil
         if city == 'yogyakarta' or city == 'jakarta':
             _kota = requests.get(url + 'region/' + city)
-
+        
+        elif city == 'semarang':
+            _kota = requests.get(url + 'city/' + city)
         #Kota yang menyediakan rental mobil
         else:
             _kota = requests.get(url + 'city/' + city)
