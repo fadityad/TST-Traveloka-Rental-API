@@ -11,7 +11,7 @@ board_members = []
 
 @app.route('/', methods=['GET'])
 def home():
-    return '''API Rental Mobil di beberapa kota Indonesia'''
+    return 'API Rental Mobil di beberapa kota Indonesia'
 
 @app.route('/kota/<city>', methods=['GET'])
 def kota(city):
@@ -50,5 +50,5 @@ def kota(city):
         })
     return jsonify(data)
         
-app.run()
+app.run(threaded = True)
 #app.run (debug = true)
