@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
 url = "https://www.traveloka.com/id-id/rental-mobil/"
 board_members = []
 
@@ -50,5 +50,5 @@ def kota(city):
         })
     return jsonify(data)
         
-app.run(port = 5010)
+app.run()
 #app.run (debug = true)
