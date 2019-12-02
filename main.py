@@ -49,6 +49,7 @@ def kota(city):
             
         })
     return jsonify(data)
-        
-app.run(threaded = True)
-#app.run (debug = true)
+
+if __name__ == '__main__':
+    app.run(threaded = True)
+    #app.run (debug = true)
